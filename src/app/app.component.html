@@ -1,0 +1,61 @@
+<div class="form">
+  <h2 id="registration">Registration Form</h2>
+  <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <label for="fname">First Name</label><br />
+    <input type="text" id="fname" placeholder="Your first name.."
+      name="firstname" ngModel required #fname="ngModel"/>
+      <div>
+        <small *ngIf="fname.invalid && fname.touched">First name is a required filed</small>
+      </div>
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname"placeholder="Your last name.."
+      name="lastname" ngModel required #lname="ngModel"/>
+      <div>
+        <small *ngIf="lname.invalid && lname.touched">Last name is a required filed</small>
+      </div>
+
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" placeholder="Your email.."
+      name="email" ngModel required email #email="ngModel" />
+      <div>
+        <small *ngIf="email.invalid && email.touched">Email is a required filed</small>
+      </div>
+
+    <label for="country">Country</label>
+    <select id="country" name="country" [ngModel] = "defaultCountry">
+      <option value="australia">Australia</option>
+      <option value="uk">UK</option>
+      <option value="america">America</option>
+      <option value="pakistan">Pakistan</option>
+      <option value="canada">Canada</option>
+    </select>
+
+    <label for="gender">Gender:</label>
+    <span *ngFor="let gen of gender">
+      <input type="radio" id="{{gen.id}}" value="{{gen.value}}" name="gender" ngModel/>
+      <label for="male">{{gen.value}}</label>
+    </span>
+   
+    <br /><br />
+
+    <label>Hobbies <i>(Optional)</i></label>
+    <div class="form-inline">
+      <label><input type="checkbox" value="sports" name="hobbies" ngModel/>Sports</label>
+      <label><input type="checkbox" value="movies" name="hobbies" ngModel/>Movies</label>
+      <label><input type="checkbox" value="music" name="hobbies" ngModel/>Music</label>
+    </div>
+
+    <input type="submit" value="submit" id="btn" [disabled] = '!myForm.valid'/>
+  </form>
+</div>
+
+
+<div class="form-data">
+  <h3>Form Data</h3>
+  <p>First Name: <strong>{{firstname}}</strong></p>
+  <p>Last Name: <strong>{{lastname}}</strong></p>
+  <p>Email: <strong>{{email}}</strong></p>
+  <p>Country: <strong>{{country}}</strong></p>
+  <p>Gender: <strong>{{gen}}</strong></p>
+</div>
